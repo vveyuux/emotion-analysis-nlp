@@ -1,22 +1,16 @@
 # About The Project
 
----
-
 This project is part of the Advanced AI course, and the chatbot can figure out what the emotion of text is.
 
 **Made By Veerayuth Bussararungsee 2010711102013**
 
 ## About Library
 
----
-
 -   [**TensorFlow**](https://www.tensorflow.org/) | for using text classification and machine learing for NLP.
 
 -   [**NLTK :: Natural Language Toolkit**](https://www.nltk.org/) | for tokenizing and stemming texts.
 
 ## About files in this project
-
----
 
 -   #### Json folder
 
@@ -44,28 +38,43 @@ This project is part of the Advanced AI course, and the chatbot can figure out w
 
 ## Getting Started
 
----
-
 This is how to setting up your project locally.
 
-#### Prerequisites
+### Prerequisites
 
-Create and Activate your virtual environment
+#### Create and Activate your virtual environment
 
-```
-# Create virtual environment
+-   ##### Create virtual environment
+
+```cmd
 python -m venv env
+```
 
-# Activate virtual environment
+-   ##### Activate virtual environment
+
+```cmd
 env\Scripts\activate
 ```
 
-Install necessary libraries for thi project.
+#### Install necessary libraries for thi project.
+
+-   ##### Tensorflow
+
+```cmd
+
+python -m pip install tensorflow
+```
+
+-   ##### NLTK :: Natural Language Toolkit
+
+```cmd
+python -m pip install nltk
+```
+
+#### To run this chatbot in the project.
+
+-   ##### Run app.py to run up a chatbot.
 
 ```
-# Tensorflow
-python -m pip install tensorflow
-
-# NLTK :: Natural Language Toolkit
-python -m pip install nltk
+python app.py
 ```
