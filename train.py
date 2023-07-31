@@ -1,6 +1,8 @@
 import random
 import json
 import pickle
+
+# numpy==1.23.1
 import numpy as np
 
 import nltk
@@ -10,9 +12,6 @@ import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.optimizers import SGD
-
-physical_devices = tf.config.list_physical_devices("GPU")
-tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 # Loading dataset for training
 lemmatizer = WordNetLemmatizer()
@@ -26,14 +25,14 @@ classes = []
 documents = []
 ignore_letters = ["?", "!", ",", "."]
 
-# Appending item from intents.json
-for item_ints in datastore["intents"]:
-    for pattern in item_ints["patterns"]:
-        word_list = nltk.word_tokenize(pattern)
-        words.extend(word_list)
-        documents.append((word_list, item_ints["tag"]))
-        if item_ints["tag"] not in classes:
-            classes.append(item_ints["tag"])
+# # Appending item from intents.json
+# for item_ints in datastore["intents"]:
+#     for pattern in item_ints["patterns"]:
+#         word_list = nltk.word_tokenize(pattern)
+#         words.extend(word_list)
+#         documents.append((word_list, item_ints["tag"]))
+#         if item_ints["tag"] not in classes:
+#             classes.append(item_ints["tag"])
 
 # Appending item from emotions.json
 for item_emo in emotionData:
@@ -72,7 +71,7 @@ for item_doc in documents:
 
 # Shuffle the data and cast it into an array
 random.shuffle(training)
-training = np.array(training)
+training = np.array(training, dtype=object)
 
 # Separate the training data: text into x and tag into y
 train_x = list(training[:, 0])
@@ -86,14 +85,16 @@ model.add(Dense(64, activation="relu"))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation="softmax"))
 
-sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+sgd = tf.keras.optimizers.legacy.SGD(
+    learning_rate=0.01, decay=1e-6, momentum=0.9, nesterov=True
+)
 
 model.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=["accuracy"])
 model.summary()
 
 # Training and save the file for using in chatbot for predicate
 hist = model.fit(
-    np.array(train_x), np.array(train_y), epochs=2000, batch_size=5, verbose=1
+    np.array(train_x), np.array(train_y), epochs=100, batch_size=5, verbose=1
 )
 model.save("model/chatbot_model.h5", hist)
 print("Done")
