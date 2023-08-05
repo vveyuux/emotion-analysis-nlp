@@ -6,22 +6,22 @@ from chatbot import predict_class
 
 """ Uncomment one of these test data to testing to model below """
 
-testdata = json.loads(open("test\json\happy.json").read())
+testdata = json.loads(open("test_data\happy.json").read())
 tp = "Happy"
 
-# testdata = json.loads(open("test\json\love.json").read())
+# testdata = json.loads(open("test_data\love.json").read())
 # tp = "Love"
 
-# testdata = json.loads(open("test\json\sadness.json").read())
+# testdata = json.loads(open("test_data\sadness.json").read())
 # tp = "Sadness"
 
-# testdata = json.loads(open("test\json\surprise.json").read())
+# testdata = json.loads(open("test_data\surprise.json").read())
 # tp = "Surprise"
 
-# testdata = json.loads(open("test\json\\fear.json").read())
+# testdata = json.loads(open("test_data\\fear.json").read())
 # tp = "Fear"
 
-# testdata = json.loads(open("test\json\\anger.json").read())
+# testdata = json.loads(open("test_data\\anger.json").read())
 # tp = "Anger"
 
 """ Uncomment one of these test data to testing to model above """
