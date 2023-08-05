@@ -4,6 +4,7 @@ import pickle
 
 # numpy==1.23.1
 import numpy as np
+import matplotlib.pyplot as plt
 
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -25,22 +26,22 @@ classes = []
 documents = []
 ignore_letters = ["?", "!", ",", "."]
 
-# # Appending item from intents.json
-# for item_ints in datastore["intents"]:
-#     for pattern in item_ints["patterns"]:
-#         word_list = nltk.word_tokenize(pattern)
-#         words.extend(word_list)
-#         documents.append((word_list, item_ints["tag"]))
-#         if item_ints["tag"] not in classes:
-#             classes.append(item_ints["tag"])
+# Appending item from intents.json
+for item_ints in datastore["intents"]:
+    for pattern in item_ints["patterns"]:
+        word_list = nltk.word_tokenize(pattern)
+        words.extend(word_list)
+        documents.append((word_list, item_ints["tag"]))
+        if item_ints["tag"] not in classes:
+            classes.append(item_ints["tag"])
 
-# Appending item from emotions.json
-for item_emo in emotionData:
-    word_list = nltk.word_tokenize(item_emo["Text"])
-    words.extend(word_list)
-    documents.append((word_list, item_emo["Emotion"]))
-    if item_emo["Emotion"] not in classes:
-        classes.append(item_emo["Emotion"])
+# # Appending item from emotions.json
+# for item_emo in emotionData:
+#     word_list = nltk.word_tokenize(item_emo["Text"])
+#     words.extend(word_list)
+#     documents.append((word_list, item_emo["Emotion"]))
+#     if item_emo["Emotion"] not in classes:
+#         classes.append(item_emo["Emotion"])
 
 # Stemming the word by WordNetLemmatizer
 words = [lemmatizer.lemmatize(word) for word in words if word not in ignore_letters]
@@ -94,7 +95,34 @@ model.summary()
 
 # Training and save the file for using in chatbot for predicate
 hist = model.fit(
-    np.array(train_x), np.array(train_y), epochs=100, batch_size=5, verbose=1
+    np.array(train_x),
+    np.array(train_y),
+    epochs=200,
+    validation_split=0.25,
+    batch_size=32,
+    verbose=1,
 )
+
 model.save("model/chatbot_model.h5", hist)
 print("Done")
+
+# list all data in history
+print(hist.history.keys())
+
+# summarize history for accuracy
+plt.plot(hist.history["accuracy"])
+plt.plot(hist.history["val_accuracy"])
+plt.title("model accuracy")
+plt.ylabel("accuracy")
+plt.xlabel("epoch")
+plt.legend(["train", "test"], loc="upper left")
+plt.show()
+
+# summarize history for loss
+plt.plot(hist.history["loss"])
+plt.plot(hist.history["val_loss"])
+plt.title("model loss")
+plt.ylabel("loss")
+plt.xlabel("epoch")
+plt.legend(["train", "test"], loc="upper left")
+plt.show()
