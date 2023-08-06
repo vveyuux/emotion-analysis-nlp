@@ -105,24 +105,3 @@ hist = model.fit(
 
 model.save("model/chatbot_model.h5", hist)
 print("Done")
-
-# list all data in history
-print(hist.history.keys())
-
-# summarize history for accuracy
-plt.plot(hist.history["accuracy"])
-plt.plot(hist.history["val_accuracy"])
-plt.title("model accuracy")
-plt.ylabel("accuracy")
-plt.xlabel("epoch")
-plt.legend(["train", "test"], loc="upper left")
-plt.show()
-
-# summarize history for loss
-plt.plot(hist.history["loss"])
-plt.plot(hist.history["val_loss"])
-plt.title("model loss")
-plt.ylabel("loss")
-plt.xlabel("epoch")
-plt.legend(["train", "test"], loc="upper left")
-plt.show()
