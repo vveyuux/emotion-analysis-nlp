@@ -89,7 +89,7 @@ python app.py
 
 ### Here is how model was build.
 
-![Build Model Image](/assets\mb_images\model.png)
+![Build Model Image](/assets\mb_images\model.png "Build Model Image")
 
 With splitting 25% of all data to be the testing data
 and this how summary, accuracy and loss of the model was.
