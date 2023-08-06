@@ -89,28 +89,28 @@ python app.py
 
 ### Here is how model was build.
 
-![Build Model Image](./assets\mb_images\model.png)
+![Build Model Image](/assets\mb_images\model.png)
 
 With splitting 25% of all data to be the testing data
 and this how summary, accuracy and loss of the model was.
 
 #### Summary
 
-![Summary Image](./assets\mb_images\summary.png)
+![Summary Image](/assets\mb_images\summary.png)
 
 #### Accuracy plot
 
-![Auccuracy plot Image](./assets\mb_images\accuracy.png)
+![Auccuracy plot Image](/assets\mb_images\accuracy.png)
 
 #### Loss plot
 
-![Loss plot Image](./assets\mb_images\loss.png)
+![Loss plot Image](/assets\mb_images\loss.png)
 
 ### Result of Testing the model
 
 For testing you can uncomment one of these in the picture to testing for good model was for prediction.
 
-![Testing data Image](./assets\mb_images\testing_data.png)
+![Testing data Image](/assets\mb_images\testing_data.png)
 
 For example in this image I uncomment happy emotion, and this what the result was.
 
@@ -122,4 +122,4 @@ python model.test.py
 
 #### Result (Happy Emotion)
 
-![Testing Happy Emotion data Image](./assets\mb_images\happy_emotion_testing_result.png)
+![Testing Happy Emotion data Image](/assets\mb_images\happy_emotion_testing_result.png)
